@@ -1,4 +1,7 @@
 import flet as ft
+import pickle
+
+popular_df = pickle.load(open('popular.pkl', 'rb'))
 
 class PopularPage(ft.UserControl):
     def build(self):
