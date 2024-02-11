@@ -1,28 +1,26 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.title = "Flet counter example"
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.title = "Collaborative Filtering Based Book Recommender"
 
-    txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100)
+    heading_text = ft.Text(
+        "Top 50 Books",
+        size=40,
+        color=ft.colors.BLACK,
+        weight=ft.FontWeight.BOLD,
+    )
+    main_column = ft.Column(
+        spacing=10,
+        controls=[heading_text]
+    )
 
-    def minus_click(e):
-        txt_number.value = str(int(txt_number.value) - 1)
-        page.update()
-
-    def plus_click(e):
-        txt_number.value = str(int(txt_number.value) + 1)
-        page.update()
+    main_container = ft.Container(
+        content=main_column,
+        padding=50,
+    )
 
     page.add(
-        ft.Row(
-            [
-                ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
-                txt_number,
-                ft.IconButton(ft.icons.ADD, on_click=plus_click),
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
-        )
+        main_container
     )
 
 ft.app(target=main)
