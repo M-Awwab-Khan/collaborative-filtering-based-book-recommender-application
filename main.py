@@ -24,41 +24,48 @@ pil_img.save(buff, format="JPEG")
 newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
 class PopularPage(ft.UserControl):
     def build(self):
+        cards_grid = ft.ResponsiveRow()
+        for index, row in popular_df.iterrows():
+
+            cards_grid.controls.append(
+                        ft.Card(
+                            content=ft.Container(
+                                content=ft.Column(
+                                    [   
+                                        ft.Image(
+                                            src_base64=newstring,
+                                            width=180,
+                                            fit=ft.ImageFit.CONTAIN,
+                                        ),
+                                        
+                                        ft.ListTile(
+                                            title=ft.Text(row['Book-Title']),
+                                            subtitle=ft.Text(
+                                                f"{row['Book-Author']}({row['Year-Of-Publication']})"
+                                            ),
+                                        ),
+                                        
+                                        ft.Row(
+                                            [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
+                                            alignment=ft.MainAxisAlignment.END,
+                                        ),
+                                    ]
+                                ),
+                                width=200,
+                                padding=10,
+                            ),
+                            col={"md": 3}
+                        )
+                    )
         main_column = ft.Column(
-            spacing=10,
+            spacing=20,
             controls=[
                 ft.Text(
                     "Top 50 Books",
                     size=40,
                     weight=ft.FontWeight.BOLD,
                 ),
-                ft.Card(
-                    content=ft.Container(
-                        content=ft.Column(
-                            [   
-                                ft.Image(
-                                    src_base64=newstring,
-                                    width=180,
-                                    fit=ft.ImageFit.CONTAIN,
-                                ),
-                                
-                                ft.ListTile(
-                                    title=ft.Text("The Enchanted Nightingale"),
-                                    subtitle=ft.Text(
-                                        "Music by Julie Gable. Lyrics by Sidney Stein."
-                                    ),
-                                ),
-                                
-                                ft.Row(
-                                    [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
-                                    alignment=ft.MainAxisAlignment.END,
-                                ),
-                            ]
-                        ),
-                        width=200,
-                        padding=10,
-                    )
-                )
+                cards_grid
             ]
         )
 
