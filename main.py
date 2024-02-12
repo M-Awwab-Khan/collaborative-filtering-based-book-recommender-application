@@ -41,19 +41,19 @@ class PopularPage(ft.UserControl):
 
     def insert(self):
         for _, row in popular_df.iterrows():
-            response = requests.get(row['Image-URL-M'], headers=headers, stream=True)
-            img = Image.open(response.raw)
-            arr = np.asarray(img)
-            pil_img = Image.fromarray(arr)
-            buff = BytesIO()
-            pil_img.save(buff, format="JPEG")
-            newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
+            # response = requests.get(row['Image-URL-M'], headers=headers, stream=True)
+            # img = Image.open(response.raw)
+            # arr = np.asarray(img)
+            # pil_img = Image.fromarray(arr)
+            # buff = BytesIO()
+            # pil_img.save(buff, format="JPEG")
+            # newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
             to_insert =  ft.Card(
                 content=ft.Container(
                     content=ft.Column(
                         [   
                             ft.Image(
-                                src_base64=newstring,
+                                src= f'https://covers.openlibrary.org/b/isbn/{row['ISBN']}-M.jpg',
                                 width=250,
                                 fit=ft.ImageFit.CONTAIN,
                             ),
