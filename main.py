@@ -92,9 +92,6 @@ class PopularPage(ft.UserControl):
         )
         e.page.show_dialog(self.dlg_modal)
         self.update()
-    def close_book_modal(self, e):
-        e.page.close_dialog()
-        self.update()
 
 def main(page: ft.Page):
     page.title = "Collaborative Filtering Based Book Recommender"
