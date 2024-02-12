@@ -16,8 +16,8 @@ headers = {
 
 class PopularPage(ft.UserControl):
     def build(self):
-        cards_grid = ft.ResponsiveRow()
-        for index, row in popular_df.iterrows():
+        cards_grid = ft.ResponsiveRow(spacing=50)
+        for _, row in popular_df.iterrows():
             response = requests.get(row['Image-URL-M'], headers=headers, stream=True)
             img = Image.open(response.raw)
             arr = np.asarray(img)
@@ -32,14 +32,14 @@ class PopularPage(ft.UserControl):
                                     [   
                                         ft.Image(
                                             src_base64=newstring,
-                                            width=180,
+                                            width=200,
                                             fit=ft.ImageFit.CONTAIN,
                                         ),
                                         
                                         ft.ListTile(
                                             title=ft.Text(row['Book-Title']),
                                             subtitle=ft.Text(
-                                                f"{row['Book-Author']}({row['Year-Of-Publication']})"
+                                                f"Author: {row['Book-Author']}({row['Year-Of-Publication']})\nRatings: {round(row['avg_ratings'], 2)}({row['num_ratings']})"
                                             ),
                                         ),
                                         
@@ -49,7 +49,7 @@ class PopularPage(ft.UserControl):
                                         ),
                                     ]
                                 ),
-                                width=200,
+                                width=150,
                                 padding=10,
                             ),
                             col={"md": 3}
