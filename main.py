@@ -59,6 +59,8 @@ class PopularPage(ft.UserControl):
                     )
         main_column = ft.Column(
             spacing=20,
+            height=650,
+            scroll=ft.ScrollMode.ADAPTIVE,
             controls=[
                 ft.Text(
                     "Top 50 Books",
