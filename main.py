@@ -78,6 +78,7 @@ class PopularPage(ft.UserControl):
             )
             self.cards_grid.controls.append(to_insert)
             self.update()
+            
     def open_book_modal(self, e):
         self.dlg_modal = ft.AlertDialog(
             modal=True,
@@ -91,6 +92,10 @@ class PopularPage(ft.UserControl):
             on_dismiss=lambda e: print("Modal dialog dismissed!"),
         )
         e.page.show_dialog(self.dlg_modal)
+        self.update()
+
+    def close_book_modal(self, e):
+        e.page.close_dialog()
         self.update()
 
 def main(page: ft.Page):
