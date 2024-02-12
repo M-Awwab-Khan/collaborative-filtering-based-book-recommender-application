@@ -66,7 +66,7 @@ class PopularPage(ft.UserControl):
                             ),
                             
                             ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen")],
+                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen", on_click=self.open_book_modal)],
                                 alignment=ft.MainAxisAlignment.END,
                             ),
                         ]
@@ -78,6 +78,23 @@ class PopularPage(ft.UserControl):
             )
             self.cards_grid.controls.append(to_insert)
             self.update()
+    def open_book_modal(self, e):
+        self.dlg_modal = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("Please confirm"),
+            content=ft.Text("Do you really want to delete all those files?"),
+            actions=[
+                ft.TextButton("Yes", on_click=self.close_book_modal),
+                ft.TextButton("No", on_click=self.close_book_modal),
+            ],
+            actions_alignment=ft.MainAxisAlignment.END,
+            on_dismiss=lambda e: print("Modal dialog dismissed!"),
+        )
+        e.page.show_dialog(self.dlg_modal)
+        self.update()
+    def close_book_modal(self, e):
+        e.page.close_dialog()
+        self.update()
 
 def main(page: ft.Page):
     page.title = "Collaborative Filtering Based Book Recommender"
