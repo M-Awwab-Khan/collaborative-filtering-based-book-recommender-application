@@ -14,19 +14,17 @@ headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
 }
 
-response = requests.get('http://images.amazon.com/images/P/0439136350.01.MZZZZZZZ.jpg', headers=headers, stream=True)
-img = Image.open(response.raw)
-arr = np.asarray(img)
-pil_img = Image.fromarray(arr)
-buff = BytesIO()
-pil_img.save(buff, format="JPEG")
-
-newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
 class PopularPage(ft.UserControl):
     def build(self):
         cards_grid = ft.ResponsiveRow()
         for index, row in popular_df.iterrows():
-
+            response = requests.get(row['Image-URL-M'], headers=headers, stream=True)
+            img = Image.open(response.raw)
+            arr = np.asarray(img)
+            pil_img = Image.fromarray(arr)
+            buff = BytesIO()
+            pil_img.save(buff, format="JPEG")
+            newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
             cards_grid.controls.append(
                         ft.Card(
                             content=ft.Container(
