@@ -66,7 +66,7 @@ class PopularPage(ft.UserControl):
                             ),
                             
                             ft.Row(
-                                [ft.TextButton("Buy tickets"), ft.TextButton("Listen", on_click=self.open_book_modal)],
+                                [ft.TextButton("Read More →", on_click=self.open_book_modal)],
                                 alignment=ft.MainAxisAlignment.END,
                             ),
                         ]
@@ -78,7 +78,7 @@ class PopularPage(ft.UserControl):
             )
             self.cards_grid.controls.append(to_insert)
             self.update()
-            
+
     def open_book_modal(self, e):
         self.dlg_modal = ft.AlertDialog(
             modal=True,
