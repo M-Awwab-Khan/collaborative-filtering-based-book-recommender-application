@@ -1,10 +1,11 @@
 import flet as ft
 import pickle
-import base64
-import requests
-import numpy as np
-from io import BytesIO
-from PIL import Image
+# import base64
+# import requests
+# import numpy as np
+# from io import BytesIO
+# from PIL import Image
+from book_preview import BookPreview
 
 popular_df = pickle.load(open('popular.pkl', 'rb'))
 headers = {
@@ -16,7 +17,7 @@ headers = {
 
 class PopularPage(ft.UserControl):
     def build(self):
-        self.cards_grid = ft.ResponsiveRow()
+        self.cards_grid = ft.Row(wrap=True)
         main_column = ft.Column(
             spacing=20,
             height=650,
@@ -48,54 +49,10 @@ class PopularPage(ft.UserControl):
             # buff = BytesIO()
             # pil_img.save(buff, format="JPEG")
             # newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
-            to_insert =  ft.Card(
-                content=ft.Container(
-                    content=ft.Column(
-                        [   
-                            ft.Image(
-                                src= f'https://covers.openlibrary.org/b/isbn/{row['ISBN']}-M.jpg',
-                                width=250,
-                                fit=ft.ImageFit.CONTAIN,
-                            ),
-                            
-                            ft.ListTile(
-                                title=ft.Text(row['Book-Title']),
-                                subtitle=ft.Text(
-                                    f"Author: {row['Book-Author']}({row['Year-Of-Publication']})\nRatings: {round(row['avg_ratings'], 2)}({row['num_ratings']})"
-                                ),
-                            ),
-                            
-                            ft.Row(
-                                [ft.TextButton("Read More →", on_click=self.open_book_modal)],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
-                        ]
-                    ),
-                    width=150,
-                    padding=10,
-                ),
-                col={"md": 3}
-            )
+            to_insert = BookPreview(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_ratings'])
             self.cards_grid.controls.append(to_insert)
             self.update()
 
-    def open_book_modal(self, e):
-        self.dlg_modal = ft.AlertDialog(
-            modal=True,
-            title=ft.Text("Please confirm"),
-            content=ft.ElevatedButton(text="Elevated button"),
-            actions=[
-                ft.TextButton("Close", on_click=self.close_book_modal),
-            ],
-            actions_alignment=ft.MainAxisAlignment.END,
-            on_dismiss=lambda e: print("Modal dialog dismissed!"),
-        )
-        e.page.show_dialog(self.dlg_modal)
-        self.update()
-
-    def close_book_modal(self, e):
-        e.page.close_dialog()
-        self.update()
 
 def main(page: ft.Page):
     page.title = "Collaborative Filtering Based Book Recommender"
