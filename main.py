@@ -83,10 +83,9 @@ class PopularPage(ft.UserControl):
         self.dlg_modal = ft.AlertDialog(
             modal=True,
             title=ft.Text("Please confirm"),
-            content=ft.Text("Do you really want to delete all those files?"),
+            content=ft.ElevatedButton(text="Elevated button"),
             actions=[
-                ft.TextButton("Yes", on_click=self.close_book_modal),
-                ft.TextButton("No", on_click=self.close_book_modal),
+                ft.TextButton("Close", on_click=self.close_book_modal),
             ],
             actions_alignment=ft.MainAxisAlignment.END,
             on_dismiss=lambda e: print("Modal dialog dismissed!"),
