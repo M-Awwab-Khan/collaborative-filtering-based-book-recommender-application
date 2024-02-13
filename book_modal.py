@@ -19,7 +19,7 @@ class BookModal(ft.UserControl):
                         ft.Column([
                             ft.Image(
                                 src=self.modal_data['img_url'],
-                                width=230,
+                                width=270,
                                 fit=ft.ImageFit.CONTAIN
                             )
                         ]),
@@ -35,6 +35,8 @@ class BookModal(ft.UserControl):
                         ], spacing=17),
                         
                     ], vertical_alignment=ft.CrossAxisAlignment.START, alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
+                    ft.Divider(),
+                    ft.Text('Recommended Books', size=35, weight=ft.FontWeight.BOLD),
                     ft.Row(
                             [BookPreview(**item) for item in rec_list],
                             width=800,
