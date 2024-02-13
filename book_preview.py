@@ -17,7 +17,7 @@ class BookPreview(ft.UserControl):
                     content=ft.Column(
                         [   
                             ft.Image(
-                                src= f'https://covers.openlibrary.org/b/isbn/{self.book_info['isbn']}-M.jpg',
+                                src= f"https://covers.openlibrary.org/b/isbn/{self.book_info['isbn']}-M.jpg",
                                 width=250,
                                 fit=ft.ImageFit.CONTAIN,
                             ),
