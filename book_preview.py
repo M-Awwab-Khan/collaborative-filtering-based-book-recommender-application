@@ -42,7 +42,7 @@ class BookPreview(ft.UserControl):
             )
 
     def open_book_modal(self, e):
-        dlg_content = BookModal(self.book_info['isbn'], self.book_info['title'], self.book_info['author'])
+        dlg_content = BookModal(self.book_info)
         dialog = ft.AlertDialog(
             modal=True,
             title=ft.Text(f"{self.book_info['title']}",size=35, weight=ft.FontWeight.W_700),
