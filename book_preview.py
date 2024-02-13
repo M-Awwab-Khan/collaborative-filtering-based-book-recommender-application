@@ -1,8 +1,7 @@
 import flet as ft
-from book_modal import BookModal
 
 class BookPreview(ft.UserControl):
-    def __init__(self, isbn, title, author, yop, num_ratings, avg_rating):
+    def __init__(self, isbn, title, author, yop, num_ratings, avg_rating, open_modal, img_url=None):
         super().__init__()
         self.book_info = {
             'isbn': isbn,
@@ -11,7 +10,8 @@ class BookPreview(ft.UserControl):
             'yop': yop,
             'num_ratings': num_ratings,
             'avg_rating': avg_rating,
-            'img_url': f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
+            'open_modal': open_modal,
+            'img_url': f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg",
         }
     def build(self):
         return ft.Card(
@@ -19,7 +19,7 @@ class BookPreview(ft.UserControl):
                     content=ft.Column(
                         [   
                             ft.Image(
-                                src= f"https://covers.openlibrary.org/b/isbn/{self.book_info['isbn']}-M.jpg",
+                                src= self.book_info['img_url'],
                                 width=200,
                                 fit=ft.ImageFit.CONTAIN,
                             ),
@@ -32,7 +32,7 @@ class BookPreview(ft.UserControl):
                             ),
                             
                             ft.Row(
-                                [ft.TextButton("Read More →", on_click=self.open_book_modal)],
+                                [ft.TextButton("Read More →", on_click=lambda e, x=self.book_info: self.book_info['open_modal'](e, x))],
                                 alignment=ft.MainAxisAlignment.END,
                             ),
                         ]
@@ -41,21 +41,3 @@ class BookPreview(ft.UserControl):
                     padding=ft.padding.only(bottom=10)
                 ),
             )
-
-    def open_book_modal(self, e):
-        dlg_content = BookModal(self.book_info)
-        dialog = ft.AlertDialog(
-            modal=True,
-            title=ft.Text(f"{self.book_info['title']}",size=35, weight=ft.FontWeight.W_700),
-            content=dlg_content,
-            actions=[
-                ft.TextButton("Close", on_click=self.close_book_modal),
-            ],
-            actions_alignment=ft.MainAxisAlignment.END,
-        )
-        e.page.show_dialog(dialog)
-        self.update()
-
-    def close_book_modal(self, e):
-        e.page.close_dialog()
-        self.update()
