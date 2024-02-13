@@ -35,10 +35,9 @@ class BookPreview(ft.UserControl):
                             ),
                         ]
                     ),
-                    width=210,
+                    width=250,
                     padding=10,
                 ),
-                col={"md": 3},
             )
     def open_book_modal(self, e):
         self.dlg_modal = ft.AlertDialog(
