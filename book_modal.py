@@ -12,24 +12,22 @@ class BookModal(ft.UserControl):
         content = ft.Column([
                     ft.Row([
                         ft.Column([
-                            ft.Text(f"Author: {self.modal_data['author']}"),
-                            ft.Text(f"Year of Publication {self.modal_data['yop']}"),
-                            ft.Text(f"Genre: {data['categories'][0]}"),
-                            ft.Text(data['description'], width=500, theme_style=ft.TextThemeStyle.BODY_MEDIUM),
-                            ft.Text(f"Ratings: {self.modal_data['num_ratings']} ({self.modal_data['avg_rating']})")
-                            
-                        ]),
-
-                        ft.Column([
                             ft.Image(
                                 src=self.modal_data['img_url'],
                                 width=230,
                                 fit=ft.ImageFit.CONTAIN
-                            ),
-                            ft.Text(f"Pages: {data['pageCount']}"),
-                            ft.Text(f"ISBN 10: {data['industryIdentifiers'][0]['identifier']}"),
-                            ft.Text(f"ISBN 13: {data['industryIdentifiers'][1]['identifier']}")
-                        ])
+                            )
+                        ]),
+                        ft.Column([
+                            ft.Text(f"Author: ", spans=[ft.TextSpan(f"{self.modal_data['author']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"Year of Publication: ", spans=[ft.TextSpan(f"{self.modal_data['yop']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"Genre: ", spans=[ft.TextSpan(f"{data['categories'][0]}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"Description:\n", spans=[ft.TextSpan(f"{data['description']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17, width=500),
+                            ft.Text(f"Pages: ", spans=[ft.TextSpan(f"{data['pageCount']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"ISBN 10: ", spans=[ft.TextSpan(f"{data['industryIdentifiers'][0]['identifier']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"ISBN 13: ", spans=[ft.TextSpan(f"{data['industryIdentifiers'][1]['identifier']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"Ratings: ", spans=[ft.TextSpan(f"{self.modal_data['num_ratings']} ({self.modal_data['avg_rating']})", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                        ]),
                         
                     ], vertical_alignment=ft.CrossAxisAlignment.START, alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
                 ], height=700, scroll=ft.ScrollMode.ADAPTIVE)
