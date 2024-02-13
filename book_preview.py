@@ -40,6 +40,7 @@ class BookPreview(ft.UserControl):
                     padding=10,
                 ),
             )
+
     def open_book_modal(self, e):
         dlg_content = BookModal(self.book_info['isbn'], self.book_info['title'], self.book_info['author'])
         dialog = ft.AlertDialog(
@@ -47,10 +48,13 @@ class BookPreview(ft.UserControl):
             title=ft.Text(f"{self.book_info['title']}"),
             content=dlg_content,
             actions=[
-                ft.TextButton("Close"),
+                ft.TextButton("Close", on_click=self.close_book_modal),
             ],
             actions_alignment=ft.MainAxisAlignment.END,
-            on_dismiss=lambda e: print("Modal dialog dismissed!"),
         )
         e.page.show_dialog(dialog)
+        self.update()
+
+    def close_book_modal(self, e):
+        e.page.close_dialog()
         self.update()
