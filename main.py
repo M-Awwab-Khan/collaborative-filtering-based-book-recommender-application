@@ -6,6 +6,7 @@ import pickle
 # from io import BytesIO
 # from PIL import Image
 from book_preview import BookPreview
+from book_modal import BookModal
 
 popular_df = pickle.load(open('popular.pkl', 'rb'))
 # headers = {
@@ -51,9 +52,27 @@ class PopularPage(ft.UserControl):
             # buff = BytesIO()
             # pil_img.save(buff, format="JPEG")
             # newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
-            to_insert = BookPreview(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_ratings'])
+            to_insert = BookPreview(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_ratings'], open_modal=self.open_book_modal)
             self.cards_grid.controls.append(to_insert)
             self.update()
+
+    def open_book_modal(self, e, book_info):
+        dlg_content = BookModal(book_info)
+        dialog = ft.AlertDialog(
+            modal=True,
+            title=ft.Text(f"{book_info['title']}",size=35, weight=ft.FontWeight.W_700),
+            content=dlg_content,
+            actions=[
+                ft.TextButton("Close", on_click=self.close_book_modal),
+            ],
+            actions_alignment=ft.MainAxisAlignment.END,
+        )
+        e.page.show_dialog(dialog)
+        self.update()
+
+    def close_book_modal(self, e):
+        e.page.close_dialog()
+        self.update()
 
 
 def main(page: ft.Page):
