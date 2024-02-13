@@ -10,7 +10,8 @@ class BookPreview(ft.UserControl):
             'author': author,
             'yop': yop,
             'num_ratings': num_ratings,
-            'avg_rating': avg_rating
+            'avg_rating': avg_rating,
+            'img_url': f"https://covers.openlibrary.org/b/isbn/{isbn}-M.jpg"
         }
     def build(self):
         return ft.Card(
