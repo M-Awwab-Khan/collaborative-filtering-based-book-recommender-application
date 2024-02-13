@@ -69,6 +69,17 @@ def main(page: ft.Page):
     page.window_width = 1100
     page.window_height = 750
     page.window_resizable = False
+    page.navigation_bar = ft.NavigationBar(
+        destinations=[
+            ft.NavigationDestination(icon=ft.icons.EXPLORE, label="Explore"),
+            ft.NavigationDestination(icon=ft.icons.COMMUTE, label="Commute"),
+            ft.NavigationDestination(
+                icon=ft.icons.BOOKMARK_BORDER,
+                selected_icon=ft.icons.BOOKMARK,
+                label="Explore",
+            ),
+        ]
+    )
 
     popular_page = PopularPage()
 
