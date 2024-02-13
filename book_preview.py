@@ -39,6 +39,7 @@ class BookPreview(ft.UserControl):
                         ]
                     ),
                     width=300,
-                    padding=5
+                    padding=5,
+                    ink=True
                 ),
             )

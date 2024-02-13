@@ -42,6 +42,6 @@ class BookModal(ft.UserControl):
                             width=800,
                             scroll=ft.ScrollMode.ADAPTIVE,
                         )
-                ], height=700, scroll=ft.ScrollMode.ADAPTIVE)
+                ], scroll=ft.ScrollMode.ADAPTIVE)
 
         return ft.Container(content=content, padding=20)
