@@ -17,8 +17,8 @@ headers = {
 
 class PopularPage(ft.UserControl):
     def build(self):
-        self.cards_grid = ft.Row(wrap=True, alignment = ft.MainAxisAlignment.CENTER)
-        self.cards_grid.width = 1280
+        self.cards_grid = ft.Row(wrap=True)
+        self.cards_grid.width = 1500
         main_column = ft.Column(
             spacing=20,
             height=650,
@@ -26,7 +26,7 @@ class PopularPage(ft.UserControl):
             controls=[
                 ft.Text(
                     "Top 50 Books",
-                    size=40,
+                    size=55,
                     weight=ft.FontWeight.BOLD,
                 ),
                 self.cards_grid
