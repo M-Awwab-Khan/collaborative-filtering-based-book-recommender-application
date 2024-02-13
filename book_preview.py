@@ -41,11 +41,11 @@ class BookPreview(ft.UserControl):
                 ),
             )
     def open_book_modal(self, e):
-        self.dlg_content = BookModal(self.book_info['isbn'], self.book_info['title'], self.book_info['author'])
+        dlg_content = BookModal(self.book_info['isbn'], self.book_info['title'], self.book_info['author'])
         dialog = ft.AlertDialog(
             modal=True,
             title=ft.Text(f"{self.book_info['title']}"),
-            content=self.dlg_content,
+            content=dlg_content,
             actions=[
                 ft.TextButton("Close"),
             ],
