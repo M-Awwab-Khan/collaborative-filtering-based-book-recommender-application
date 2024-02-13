@@ -19,7 +19,7 @@ class BookPreview(ft.UserControl):
                         [   
                             ft.Image(
                                 src= f"https://covers.openlibrary.org/b/isbn/{self.book_info['isbn']}-M.jpg",
-                                width=250,
+                                width=200,
                                 fit=ft.ImageFit.CONTAIN,
                             ),
                             
@@ -36,8 +36,8 @@ class BookPreview(ft.UserControl):
                             ),
                         ]
                     ),
-                    width=250,
-                    padding=10,
+                    width=200,
+                    padding=ft.padding.only(bottom=10)
                 ),
             )
 
