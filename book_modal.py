@@ -7,7 +7,7 @@ class BookModal(ft.UserControl):
         self.modal_data = book_info
 
     def build(self):
-        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{self.modal_data['isbn']}')
+        response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{self.modal_data["isbn"]}')
         data = response.json()['items'][0]['volumeInfo']
         content = ft.Column([
                     ft.Row([
