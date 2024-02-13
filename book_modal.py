@@ -1,6 +1,8 @@
 import flet as ft
 import requests
 from book_preview import BookPreview
+from recommend import recommend
+from pprint import pprint
 
 class BookModal(ft.UserControl):
     def __init__(self, book_info):
@@ -10,6 +12,10 @@ class BookModal(ft.UserControl):
     def build(self):
         response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=isbn:{self.modal_data["isbn"]}')
         data = response.json()['items'][0]['volumeInfo']
+        rec_list = recommend(self.modal_data['title'])
+        pprint(rec_list)
+        for item in rec_list:
+            item.update({'open_modal':self.modal_data['open_modal']})
         content = ft.Column([
                     ft.Row([
                         ft.Column([
@@ -32,7 +38,7 @@ class BookModal(ft.UserControl):
                         
                     ], vertical_alignment=ft.CrossAxisAlignment.START, alignment=ft.MainAxisAlignment.SPACE_BETWEEN),
                     ft.Row(
-                            [BookPreview(**self.modal_data)]
+                            [BookPreview(**item) for item in rec_list]
                         )
                 ], height=700, scroll=ft.ScrollMode.ADAPTIVE)
 
