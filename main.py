@@ -1,28 +1,17 @@
 import flet as ft
 import pickle
-# import base64
-# import requests
-# import numpy as np
-# from io import BytesIO
-# from PIL import Image
 from book_preview import BookPreview
 from book_modal import BookModal
 
 popular_df = pickle.load(open('popular.pkl', 'rb'))
-# headers = {
-#     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-#     'Accept-Language': 'en-US,en;q=0.9',
-#     'Accept-Encoding': 'gzip, deflate, br',
-#     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
-# }
 
 class PopularPage(ft.UserControl):
     def build(self):
         self.cards_grid = ft.Row(wrap=True)
-        self.cards_grid.width = 1500
+        # self.cards_grid.width = 1700
         main_column = ft.Column(
             spacing=20,
-            height=650,
+            height=610,
             scroll=ft.ScrollMode.ADAPTIVE,
             controls=[
                 ft.Text(
@@ -77,6 +66,9 @@ class PopularPage(ft.UserControl):
 
 def main(page: ft.Page):
     page.title = "Collaborative Filtering Based Book Recommender"
+    page.window_width = 1100
+    page.window_height = 750
+    page.window_resizable = False
 
     popular_page = PopularPage()
 
