@@ -26,9 +26,6 @@ class BookPreview(ft.UserControl):
                             
                             ft.ListTile(
                                 title=ft.Text(self.book_info['title']),
-                                subtitle=ft.Text(
-                                    f"Author: {self.book_info['author']}({self.book_info['yop']})\nRatings: {round(self.book_info['avg_rating'], 2)}({self.book_info['num_ratings']})"
-                                ),
                             ),
                             
                             ft.Row(
@@ -38,6 +35,6 @@ class BookPreview(ft.UserControl):
                         ]
                     ),
                     width=200,
-                    padding=ft.padding.only(bottom=10)
+                    padding=5
                 ),
             )
