@@ -16,25 +16,29 @@ class BookPreview(ft.UserControl):
     def build(self):
         return ft.Card(
                 content=ft.Container(
-                    content=ft.Column(
+                    content=ft.Row(
                         [   
                             ft.Image(
                                 src= self.book_info['img_url'],
-                                width=200,
+                                width=100,
                                 fit=ft.ImageFit.CONTAIN,
                             ),
-                            
-                            ft.ListTile(
-                                title=ft.Text(self.book_info['title']),
-                            ),
-                            
-                            ft.Row(
-                                [ft.TextButton("Read More →", on_click=lambda e, x=self.book_info: self.book_info['open_modal'](e, x))],
-                                alignment=ft.MainAxisAlignment.END,
-                            ),
+                            ft.Column([
+                                ft.ListTile(
+                                    title=ft.Text(self.book_info['title'], max_lines=2, overflow="ellipsis"),
+                                    subtitle=ft.Text(
+                                        f"Author: {self.book_info['author']}({self.book_info['yop']})\nRatings: {round(self.book_info['avg_rating'], 2)}({self.book_info['num_ratings']})"
+                                    )
+                                ),
+                                
+                                ft.Row(
+                                    [ft.TextButton("Read More →", on_click=lambda e, x=self.book_info: self.book_info['open_modal'](e, x))],
+                                    alignment=ft.MainAxisAlignment.END,
+                                ),
+                            ], width=180)
                         ]
                     ),
-                    width=200,
+                    width=300,
                     padding=5
                 ),
             )
