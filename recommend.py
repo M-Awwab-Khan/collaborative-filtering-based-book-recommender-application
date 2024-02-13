@@ -10,6 +10,13 @@ def recommend(book_name):
     similar_items = sorted(list(enumerate(similarity_score[index])), key=lambda x: x[1], reverse=True)[1:6]
     data = []
     for item in similar_items:
-        temp_data =-{}
         temp = final_ratings_app[final_ratings_app['Book-Title'] == pt.index[item[0]]]
+        temp_data = {}
         temp_data['isbn'] = temp['ISBN'].values[0]
+        temp_data['title'] = temp['Book-Title'].values[0]
+        temp_data['author'] = temp['Book-Author'].values[0]
+        temp_data['yop'] = temp['Year-Of-Publication'].values[0]
+        temp_data['num_ratings'] = temp['num_ratings'].values[0]
+        temp_data['avg_rating'] = temp['avg_rating'].values[0]
+        data.append(temp_data)
+    return data
