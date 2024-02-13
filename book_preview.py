@@ -1,4 +1,5 @@
 import flet as ft
+from book_modal import BookModal
 
 class BookPreview(ft.UserControl):
     def __init__(self, isbn, title, author, yop, num_ratings, avg_rating):
@@ -40,19 +41,16 @@ class BookPreview(ft.UserControl):
                 ),
             )
     def open_book_modal(self, e):
-        self.dlg_modal = ft.AlertDialog(
+        self.dlg_content = BookModal(self.book_info['isbn'], self.book_info['title'], self.book_info['author'])
+        dialog = ft.AlertDialog(
             modal=True,
-            title=ft.Text("Please confirm"),
-            content=ft.ElevatedButton(text="Elevated button"),
+            title=ft.Text(f"{self.book_info['title']}"),
+            content=self.dlg_content,
             actions=[
-                ft.TextButton("Close", on_click=self.close_book_modal),
+                ft.TextButton("Close"),
             ],
             actions_alignment=ft.MainAxisAlignment.END,
             on_dismiss=lambda e: print("Modal dialog dismissed!"),
         )
-        e.page.show_dialog(self.dlg_modal)
-        self.update()
-
-    def close_book_modal(self, e):
-        e.page.close_dialog()
+        e.page.show_dialog(dialog)
         self.update()
