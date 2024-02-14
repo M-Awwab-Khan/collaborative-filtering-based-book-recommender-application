@@ -25,8 +25,6 @@ class PopularPage(ft.UserControl):
             ]
         )
 
-        
-
         main_container = ft.Container(
             content=main_column,
             padding=50,
@@ -36,13 +34,6 @@ class PopularPage(ft.UserControl):
 
     def insert(self):
         for _, row in popular_df.iterrows():
-            # response = requests.get(row['Image-URL-M'], headers=headers, stream=True)
-            # img = Image.open(response.raw)
-            # arr = np.asarray(img)
-            # pil_img = Image.fromarray(arr)
-            # buff = BytesIO()
-            # pil_img.save(buff, format="JPEG")
-            # newstring = base64.b64encode(buff.getvalue()).decode("utf-8")
             to_insert = BookPreview(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_ratings'], open_modal=modal_manager.open_book_modal)
             self.cards_grid.controls.append(to_insert)
             self.update()
