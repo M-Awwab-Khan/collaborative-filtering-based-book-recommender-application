@@ -33,6 +33,7 @@ class SearchPage(ft.UserControl):
         suggestions = search(search_term)
         if search_term.strip():
             if suggestions.shape[0] > 0:
+                self.error_msg.value = ''
                 self.cards_grid.controls.clear()
                 for _, row in suggestions.iterrows():
                     to_insert = BookCard(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_rating'], open_modal=modal_manager.open_book_modal)
