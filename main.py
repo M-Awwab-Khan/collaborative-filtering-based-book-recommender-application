@@ -9,8 +9,7 @@ modal_manager = ModalManager()
 
 class PopularPage(ft.UserControl):
     def build(self):
-        self.cards_grid = ft.Row(wrap=True)
-        # self.cards_grid.width = 1700
+        self.cards_grid = ft.Row(wrap=True, width=1366)
         main_column = ft.Column(
             spacing=20,
             height=610,
@@ -21,14 +20,14 @@ class PopularPage(ft.UserControl):
                     size=55,
                     weight=ft.FontWeight.BOLD,
                 ),
-                self.cards_grid
+                self.cards_grid,
+                ft.Divider(height=30)
             ]
         )
 
         main_container = ft.Container(
             content=main_column,
-            padding=50,
-
+            padding=ft.padding.Padding(30, 50, 30, 50),
         )
         return main_container
 
@@ -78,8 +77,8 @@ def main(page: ft.Page):
         ], on_change=tab_changed
     )
     page.title = "Collaborative Filtering Based Book Recommender"
-    page.window_width = 1100
-    page.window_height = 750
+    page.window_width = 1366
+    page.window_height = 768
     page.window_resizable = False
     
     page.on_route_change = route_changed
