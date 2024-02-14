@@ -2,6 +2,7 @@ import flet as ft
 import pickle
 from book_preview import BookPreview
 from book_modal import BookModal
+from search_page import SearchPage
 
 popular_df = pickle.load(open('popular.pkl', 'rb'))
 
@@ -65,27 +66,49 @@ class PopularPage(ft.UserControl):
 
 
 def main(page: ft.Page):
+    def route_changed(e):
+        page.views.clear()
+        if e.route == '/':
+            p = PopularPage()
+            page.views.append(
+                ft.View(
+                    e.route,
+                    [
+                    p,
+                    page.navigation_bar
+                    ],
+                )
+            )
+            page.update()
+            p.insert()
+        else:
+            page.views.append(
+                ft.View(
+                    e.route,
+                    [
+                    SearchPage(),
+                    page.navigation_bar
+                    ],
+                )
+            )
+    
+    def tab_changed(e):
+        if e.control.selected_index == 0:
+            page.go('/')
+        else:
+            page.go('/search')
+    page.navigation_bar = ft.NavigationBar(
+        destinations=[
+            ft.NavigationDestination(icon=ft.icons.EXPLORE, label="Explore"),
+            ft.NavigationDestination(icon=ft.icons.SEARCH, label="Search"),
+        ], on_change=tab_changed
+    )
     page.title = "Collaborative Filtering Based Book Recommender"
     page.window_width = 1100
     page.window_height = 750
     page.window_resizable = False
-    page.navigation_bar = ft.NavigationBar(
-        destinations=[
-            ft.NavigationDestination(icon=ft.icons.EXPLORE, label="Explore"),
-            ft.NavigationDestination(icon=ft.icons.COMMUTE, label="Commute"),
-            ft.NavigationDestination(
-                icon=ft.icons.BOOKMARK_BORDER,
-                selected_icon=ft.icons.BOOKMARK,
-                label="Explore",
-            ),
-        ]
-    )
-
-    popular_page = PopularPage()
-
-    page.add(
-        popular_page
-    )
-    popular_page.insert()
+    
+    page.on_route_change = route_changed
+    page.go(page.route)
 
 ft.app(target=main)
