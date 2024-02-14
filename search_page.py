@@ -1,6 +1,6 @@
 import flet as ft
 from search import search
-from book_preview import BookPreview
+from book_card import BookCard
 from modal_manager import ModalManager
 
 modal_manager = ModalManager()
@@ -31,7 +31,7 @@ class SearchPage(ft.UserControl):
 
         if suggestions.shape[0] > 0:
             for _, row in suggestions.iterrows():
-                to_insert = BookPreview(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_rating'], open_modal=modal_manager.open_book_modal)
+                to_insert = BookCard(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_rating'], open_modal=modal_manager.open_book_modal)
                 self.cards_grid.controls.append(to_insert)
                 self.update()
 

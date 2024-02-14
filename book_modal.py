@@ -1,6 +1,6 @@
 import flet as ft
 import requests
-from book_preview import BookPreview
+from book_card import BookCard
 from recommend import recommend
 
 class BookModal(ft.UserControl):
@@ -38,7 +38,7 @@ class BookModal(ft.UserControl):
                     ft.Divider(),
                     ft.Text('Recommended Books', size=35, weight=ft.FontWeight.BOLD),
                     ft.Row(
-                            [BookPreview(**item) for item in rec_list],
+                            [BookCard(**item) for item in rec_list],
                             width=800,
                             scroll=ft.ScrollMode.ADAPTIVE,
                         )

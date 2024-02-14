@@ -1,6 +1,6 @@
 import flet as ft
 import pickle
-from book_preview import BookPreview
+from book_card import BookCard
 from modal_manager import ModalManager
 from search_page import SearchPage
 
@@ -34,7 +34,7 @@ class PopularPage(ft.UserControl):
 
     def insert(self):
         for _, row in popular_df.iterrows():
-            to_insert = BookPreview(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_ratings'], open_modal=modal_manager.open_book_modal)
+            to_insert = BookCard(row['ISBN'], row['Book-Title'], row['Book-Author'], row['Year-Of-Publication'], row['num_ratings'], row['avg_ratings'], open_modal=modal_manager.open_book_modal)
             self.cards_grid.controls.append(to_insert)
             self.update()
 

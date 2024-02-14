@@ -1,6 +1,6 @@
 import flet as ft
 
-class BookPreview(ft.UserControl):
+class BookCard(ft.UserControl):
     def __init__(self, isbn, title, author, yop, num_ratings, avg_rating, open_modal, img_url=None):
         super().__init__()
         self.book_info = {
