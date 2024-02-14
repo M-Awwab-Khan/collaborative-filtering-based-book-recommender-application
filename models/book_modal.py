@@ -1,7 +1,7 @@
 import flet as ft
 import requests
-from book_card import BookCard
-from recommend import recommend
+from models.book_card import BookCard
+from utilities.recommend import recommend
 
 class BookModal(ft.UserControl):
     def __init__(self, book_info):

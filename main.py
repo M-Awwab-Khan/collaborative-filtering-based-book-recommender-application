@@ -1,6 +1,6 @@
 import flet as ft
-from search_page import SearchPage
-from popular_page import PopularPage
+from views.search_page import SearchPage
+from views.popular_page import PopularPage
 
 def main(page: ft.Page):
     def route_changed(e):

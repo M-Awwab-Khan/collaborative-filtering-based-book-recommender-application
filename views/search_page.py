@@ -1,7 +1,7 @@
 import flet as ft
-from search import search
-from book_card import BookCard
-from modal_manager import ModalManager
+from utilities.search import search
+from models.book_card import BookCard
+from models.modal_manager import ModalManager
 
 modal_manager = ModalManager()
 

@@ -1,7 +1,7 @@
 import flet as ft
 import pickle
-from book_card import BookCard
-from modal_manager import ModalManager
+from models.book_card import BookCard
+from models.modal_manager import ModalManager
 
 popular_df = pickle.load(open('popular.pkl', 'rb'))
 modal_manager = ModalManager()

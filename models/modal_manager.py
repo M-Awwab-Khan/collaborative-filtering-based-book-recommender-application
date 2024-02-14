@@ -1,5 +1,5 @@
 import flet as ft
-from book_modal import BookModal
+from models.book_modal import BookModal
 
 class ModalManager:
     def open_book_modal(self, e, book_info):
