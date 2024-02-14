@@ -25,7 +25,7 @@ class SearchPage(ft.UserControl):
                 self.cards_grid,
                 self.error_msg,
             ], spacing=30, height=610, scroll=ft.ScrollMode.ADAPTIVE,),
-            padding=ft.padding.Padding(30, 50, 30, 50)
+            padding=ft.padding.Padding(30, 30, 30, 50)
         )
     def show_suggestions(self, e):
         self.cards_grid.controls.clear()

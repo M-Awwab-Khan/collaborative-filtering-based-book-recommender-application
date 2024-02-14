@@ -27,7 +27,7 @@ class PopularPage(ft.UserControl):
 
         main_container = ft.Container(
             content=main_column,
-            padding=ft.padding.Padding(30, 50, 30, 50),
+            padding=ft.padding.Padding(30, 30, 30, 50),
         )
         return main_container
 
