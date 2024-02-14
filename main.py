@@ -41,8 +41,7 @@ def main(page: ft.Page):
         ], on_change=tab_changed
     )
     page.title = "Collaborative Filtering Based Book Recommender"
-    page.window_width = 1366
-    page.window_height = 768
+    page.window_maximized = True
     page.window_resizable = False
     
     page.on_route_change = route_changed
