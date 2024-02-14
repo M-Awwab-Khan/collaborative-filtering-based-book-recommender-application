@@ -1,9 +1,10 @@
 import flet as ft
 import pickle
+import os
 from models.book_card import BookCard
 from models.modal_manager import ModalManager
 
-popular_df = pickle.load(open('popular.pkl', 'rb'))
+popular_df = pickle.load(open(os.path.join(os.getcwd(), 'data', 'popular.pkl'), 'rb'))
 modal_manager = ModalManager()
 
 class PopularPage(ft.UserControl):

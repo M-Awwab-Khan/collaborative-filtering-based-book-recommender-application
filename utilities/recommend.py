@@ -1,9 +1,10 @@
 import numpy as np
 import pickle
+import os
 
-similarity_score = pickle.load(open('similarity_score.pkl', 'rb'))
-pt = pickle.load(open('pt.pkl', 'rb'))
-final_ratings_app = pickle.load(open('final_ratings_app.pkl', 'rb'))
+similarity_score = pickle.load(open(os.path.join(os.getcwd(), 'data', 'similarity_score.pkl'), 'rb'))
+pt = pickle.load(open(os.path.join(os.getcwd(), 'data', 'pt.pkl'), 'rb'))
+final_ratings_app = pickle.load(open(os.path.join(os.getcwd(), 'data', 'final_ratings_app.pkl'), 'rb'))
 
 def recommend(book_name):
     index = np.where(pt.index == book_name)[0][0]
