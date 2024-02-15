@@ -45,6 +45,9 @@ def main(page: ft.Page):
 
     page.appbar = ft.AppBar(
             title=ft.Text("Collaborative Filtering Based Book Recommender"),
+            leading=ft.Icon(ft.icons.PALETTE),
+            leading_width=50,
+            center_title=True,
             actions=[
                 ft.Row([
                     ft.IconButton(
