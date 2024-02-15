@@ -31,7 +31,7 @@ class BookModal(ft.UserControl):
                             ft.Text(f"Pages: ", spans=[ft.TextSpan(f"{data['pageCount']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
                             ft.Text(f"ISBN 10: ", spans=[ft.TextSpan(f"{data['industryIdentifiers'][0]['identifier']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
                             ft.Text(f"ISBN 13: ", spans=[ft.TextSpan(f"{data['industryIdentifiers'][1]['identifier']}", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
-                            ft.Text(f"Ratings: ", spans=[ft.TextSpan(f"{self.modal_data['num_ratings']} ({self.modal_data['avg_rating']})", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
+                            ft.Text(f"Ratings: ", spans=[ft.TextSpan(f"{round(self.modal_data['avg_rating'], 2)} ⭐ ({self.modal_data['num_ratings']})", ft.TextStyle(weight=ft.FontWeight.NORMAL))], weight=ft.FontWeight.BOLD, size=17),
                         ], spacing=17),
                         
                     ], vertical_alignment=ft.CrossAxisAlignment.START, alignment=ft.MainAxisAlignment.SPACE_BETWEEN),

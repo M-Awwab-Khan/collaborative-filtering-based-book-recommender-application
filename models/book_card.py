@@ -27,7 +27,7 @@ class BookCard(ft.UserControl):
                                 ft.ListTile(
                                     title=ft.Text(self.book_info['title'], max_lines=2, overflow="ellipsis"),
                                     subtitle=ft.Text(
-                                        f"Author: {self.book_info['author']}({self.book_info['yop']})\nRatings: {round(self.book_info['avg_rating'], 2)}({self.book_info['num_ratings']})"
+                                        f"Author: {self.book_info['author']}({self.book_info['yop']})\nRatings: {round(self.book_info['avg_rating'], 2)} ⭐ ({self.book_info['num_ratings']})"
                                     )
                                 ),
                                 
