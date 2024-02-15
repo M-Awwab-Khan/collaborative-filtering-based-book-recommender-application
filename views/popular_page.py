@@ -21,13 +21,13 @@ class PopularPage(ft.UserControl):
                     weight=ft.FontWeight.BOLD,
                 ),
                 self.cards_grid,
-                ft.Divider(height=30)
+                ft.Divider(height=70)
             ]
         )
 
         main_container = ft.Container(
             content=main_column,
-            padding=ft.padding.Padding(30, 30, 30, 50),
+            margin=ft.margin.Margin(30, 0, 30, 0),
         )
         return main_container
 
