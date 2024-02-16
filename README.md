@@ -9,3 +9,5 @@ After successful installation run
 python main.py
 ```
 ### Demo
+https://github.com/M-Awwab-Khan/collaborative-filtering-based-book-recommender-application/assets/63666608/9f4e1044-d778-48e1-ba9f-621db61014ae
+
